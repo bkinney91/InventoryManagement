@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -13,8 +13,11 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        homepage.cpp
+        homepage.cpp \
+    loginDialog.cpp
 
-HEADERS  += homepage.h
+HEADERS  += homepage.h \
+    loginDialog.h
 
-FORMS    += homepage.ui
+FORMS    += homepage.ui \
+    loginDialog.ui

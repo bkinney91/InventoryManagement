@@ -1,5 +1,5 @@
 #include "homepage.h"
-#include "loginDialog"
+#include "loginDialog.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     HomePage w;
     w.show();
 
-    LoginDialog d;
-    d.show();
+    LoginDialog l;
+    l.show();
 
     return a.exec();
 }

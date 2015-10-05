@@ -1,5 +1,5 @@
 #include "loginDialog.h"
-#include "ui_dialog.h"
+#include "ui_loginDialog.h"
 
 // TO DO: Massimo Cannavo - Need to add comments when I have time.
 //                        - Change path relative to Windows, Linux, and maybe also OSX users.
