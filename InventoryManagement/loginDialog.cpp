@@ -1,18 +1,46 @@
+//           a8888b.
+//          d888888b.
+//          8P"YP"Y88
+//          8|o||o|88
+//          8'    .88
+//          8`._.' Y8.
+//         d/      `8b.
+//        dP   .    Y8b.
+//       d8:'  "  `::88b
+//      d8"         'Y88b
+//      :8P    '      :888
+//       8a.   :     _a88P
+//     ._/"Yaa_:   .| 88P|
+//jgs  \    YP"    `| 8P  `.
+//a:f  /     \.___.d|    .'
+//     `--..__)8888P`._.'
+//
+// Author:      Massimo Cannavo
+//
+// Description: The implementation of the login dialog. The user will be
+//              prompted with a dialog to login into the inventory management
+//              system. On success login, the graphical user interface (gui)
+//              of the inventory management system will be executed.
+
 #include "loginDialog.h"
 #include "ui_loginDialog.h"
 
-// TO DO: Massimo Cannavo - Need to add comments when I have time.
-//                        - Change path relative to Windows, Linux, and maybe also OSX users.
-//                        - Remove redundant debug statements and message box.
-
-#ifdef Q_OS_LINUX
-#define pathDatabase "/home/massimo/pos/sql/accounts.sqlite" // Need to change this (fix path relative to Linux user)
-#elif Q_WS_WIN
-#define pathDatabase "C:" // Need to change this (relative to Windows user)
+// Aqcuire the path of the databse on execution of the login dialog.
+// Linux and Windows have different conventions for their filesystem
+// hierarchy and structure.
+#ifdef LINUX
+QString pathDatabase =
+        QCoreApplication::applicationDirPath() + "/sql/db.sqlite3";
+#elif
+QString pathDatabase =
+        QCoreApplication::applicationDirPath() + "\sql\db.sqlite3";
 #endif
 
-LoginDialog::LoginDialog(QWidget *parent) :
-    QDialog(parent),
+// Construct the login dialog using a QWidget and QDialog. On executiong of
+// the login dialog, a connection to the database must be first established.
+// The login credentials will be checked by the database to determine if the
+// user is a valid user in the database of the inventory management system.
+LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
     ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
@@ -33,13 +61,14 @@ LoginDialog::LoginDialog(QWidget *parent) :
     }
 }
 
+// TO DO: Needs to be handled by other class, the login dialog is a seperate
+//        entity from the actual inventory management system. The login dialog
+//        will exit and execute the inventory management system. The database must
+//        remain open.
 LoginDialog::~LoginDialog()
 {
     delete ui;
-
-    qDebug() << "Terminating the connection"; // Debug statements should be removed later.
-
-    posDatabase.close();
+    posDatabase.close(); // Remove this later.
 }
 
 void LoginDialog::on_cancelButton_clicked()
