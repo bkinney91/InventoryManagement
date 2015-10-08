@@ -81,7 +81,13 @@ void LoginDialog::on_loginButton_clicked()
     QSqlQuery sqlQuery;
 
     if(sqlQuery.exec(query) && sqlQuery.next())
+    {
         ui->loginResult->setText("[+]Login successful");
+        homePage.show();
+        homePage.setDatabase(posDatabase);
+
+        this->close();
+    }
 
     else
         ui->loginResult->setText("[-]Invalid Username or Password");

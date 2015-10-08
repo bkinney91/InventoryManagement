@@ -13,11 +13,11 @@
 #include <QDialog>
 #include <QtSql>
 #include <QFileInfo>
-#include <QApplication>
-#include <QMessageBox>
+#include "homepage.h"
 
-namespace Ui {
-class LoginDialog;
+namespace Ui
+{
+    class LoginDialog;
 }
 
 // The login dialog consists of a QDialog that creates the interface for the
@@ -43,9 +43,10 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
+    HomePage homePage;
 
     QSqlDatabase posDatabase; // The connection to the pos database.
     QString pathDatabase;     // The path of the database.
 };
 
-#endif // DIALOG_H
+#endif
