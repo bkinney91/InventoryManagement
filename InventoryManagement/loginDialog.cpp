@@ -61,12 +61,9 @@ LoginDialog::~LoginDialog()
     posDatabase.close(); // Remove this later.
 }
 
-void LoginDialog::on_cancelButton_clicked()
-{
-    ui->usernameInput->setText("");
-    ui->passwordInput->setText("");
-}
-
+// Slot for the login button clicked signal. The button will attempt to login
+// the user by checking the users table of the database to see if the user has
+// valid credentials or if the user is a valid user in the system.
 void LoginDialog::on_loginButton_clicked()
 {
     QString username = ui->usernameInput->text();
@@ -74,28 +71,26 @@ void LoginDialog::on_loginButton_clicked()
 
     if(!posDatabase.isOpen())
     {
-        qDebug() << "No connection to database";
+        ui->loginResult->setText("[!]Database connection lost");
         return;
     }
 
-    QString query = "SELECT Username, Password, Role FROM Users WHERE Username=\'" +
+    QString query = "SELECT User_ID, Password FROM Users WHERE User_ID=\'" +
                     username + "\' AND Password=\'" + password + "\'";
 
     QSqlQuery sqlQuery;
 
     if(sqlQuery.exec(query) && sqlQuery.next())
-    {
-        ui->loginResult->setText("[+]Attempting to login");
-
-        QString message = "Username: " + sqlQuery.value(0).toString() + "\n" +
-                          "Password: " + sqlQuery.value(1).toString() + "\n" +
-                          "Role: " + sqlQuery.value(2).toString();
-
-        QMessageBox::warning(this, "Login established", message); // Fix this later.
-    }
+        ui->loginResult->setText("[+]Login successful");
 
     else
-    {
         ui->loginResult->setText("[-]Invalid Username or Password");
-    }
+}
+
+// Slot for the cancel button clicked signal. The button will erase the
+// contents of the username and password textbox.
+void LoginDialog::on_cancelButton_clicked()
+{
+    ui->usernameInput->setText("");
+    ui->passwordInput->setText("");
 }

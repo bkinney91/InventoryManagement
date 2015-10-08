@@ -6,7 +6,6 @@ int main(int argc, char *argv[])
 {
     QApplication gui(argc, argv);
     HomePage w;
-    w.show();
 
     LoginDialog l;
     l.show();
