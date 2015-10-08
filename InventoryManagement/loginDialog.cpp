@@ -1,19 +1,4 @@
-//           a8888b.
-//          d888888b.
-//          8P"YP"Y88
-//          8|o||o|88
-//          8'    .88
-//          8`._.' Y8.
-//         d/      `8b.
-//        dP   .    Y8b.
-//       d8:'  "  `::88b
-//      d8"         'Y88b
-//      :8P    '      :888
-//       8a.   :     _a88P
-//     ._/"Yaa_:   .| 88P|
-//jgs  \    YP"    `| 8P  `.
-//a:f  /     \.___.d|    .'
-//     `--..__)8888P`._.'
+// loginDialog.cpp
 //
 // Author:      Massimo Cannavo
 //
@@ -28,21 +13,30 @@
 // Aqcuire the path of the databse on execution of the login dialog.
 // Linux and Windows have different conventions for their filesystem
 // hierarchy and structure.
-#ifdef LINUX
-QString pathDatabase =
-        QCoreApplication::applicationDirPath() + "/sql/db.sqlite3";
-#elif
-QString pathDatabase =
-        QCoreApplication::applicationDirPath() + "\sql\db.sqlite3";
+#ifdef Q_OS_LINUX
+    bool is_linux = true;
+    bool is_windows = false;
+#elif Q_OS_WIN
+    bool is_linux = false;
+    bool is_windows = true;
 #endif
 
 // Construct the login dialog using a QWidget and QDialog. On executiong of
 // the login dialog, a connection to the database must be first established.
 // The login credentials will be checked by the database to determine if the
 // user is a valid user in the database of the inventory management system.
+//
+// args:
+//    *parent (QWidget): The widget that is used for drawing the child widget.
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
     ui(new Ui::LoginDialog)
 {
+    if (is_linux)
+        pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
+
+    else if (is_windows)
+        pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
+
     ui->setupUi(this);
 
     posDatabase = QSqlDatabase::addDatabase("QSQLITE");
@@ -51,14 +45,10 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
     QFileInfo sqlFile(pathDatabase);
 
     if(sqlFile.isFile() && posDatabase.open())
-    {
         ui->loginResult->setText("[+]Database connection established");
-    }
 
     else
-    {
         ui->loginResult->setText("[!]Invalid database");
-    }
 }
 
 // TO DO: Needs to be handled by other class, the login dialog is a seperate

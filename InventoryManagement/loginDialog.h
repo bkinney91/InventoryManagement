@@ -1,19 +1,4 @@
-//           a8888b.
-//          d888888b.
-//          8P"YP"Y88
-//          8|o||o|88
-//          8'    .88
-//          8`._.' Y8.
-//         d/      `8b.
-//        dP   .    Y8b.
-//       d8:'  "  `::88b
-//      d8"         'Y88b
-//      :8P    '      :888
-//       8a.   :     _a88P
-//     ._/"Yaa_:   .| 88P|
-//jgs  \    YP"    `| 8P  `.
-//a:f  /     \.___.d|    .'
-//     `--..__)8888P`._.'
+// loginDialog.h
 //
 // Author:      Massimo Cannavo
 //
@@ -28,7 +13,7 @@
 #include <QDialog>
 #include <QtSql>
 #include <QFileInfo>
-#include <QDebug>
+#include <QApplication>
 #include <QMessageBox>
 
 namespace Ui {
@@ -42,8 +27,15 @@ class LoginDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginDialog(QWidget *parent = 0); // Construct the login dialog.
-    ~LoginDialog();                            // Destruct the login dialog.
+
+    // Construct the login dialog.
+    //
+    // args:
+    //    *parent (QWidget): The widget that is used for drawing the child widget.
+    explicit LoginDialog(QWidget *parent = 0);
+
+    // Destruct the login dialog.
+    ~LoginDialog();
 
 private slots:
     void on_loginButton_clicked();  // Slot for the login button clicked signal.

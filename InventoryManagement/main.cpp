@@ -4,12 +4,12 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
+    QApplication gui(argc, argv);
     HomePage w;
     w.show();
 
     LoginDialog l;
     l.show();
 
-    return a.exec();
+    return gui.exec();
 }
