@@ -10,17 +10,6 @@
 #include "loginDialog.h"
 #include "ui_loginDialog.h"
 
-// Aqcuire the path of the databse on execution of the login dialog.
-// Linux and Windows have different conventions for their filesystem
-// hierarchy and structure.
-#ifdef Q_OS_LINUX
-    bool is_linux = true;
-    bool is_windows = false;
-#elif Q_OS_WIN
-    bool is_linux = false;
-    bool is_windows = true;
-#endif
-
 // Construct the login dialog using a QWidget and QDialog. On executiong of
 // the login dialog, a connection to the database must be first established.
 // The login credentials will be checked by the database to determine if the
@@ -31,13 +20,9 @@
 LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
     ui(new Ui::LoginDialog)
 {
-    if (is_linux)
-        pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
-
-    else if (is_windows)
-        pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
-
     ui->setupUi(this);
+
+    pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
 
     posDatabase = QSqlDatabase::addDatabase("QSQLITE");
     posDatabase.setDatabaseName(pathDatabase);
