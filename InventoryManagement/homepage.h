@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSqlDatabase>
+#include <QCompleter>
 
 namespace Ui
 {
@@ -21,6 +22,7 @@ public:
 private:
     Ui::HomePage *ui;
     QSqlDatabase database;
+    QCompleter *stringCompleter;
 };
 
 #endif
