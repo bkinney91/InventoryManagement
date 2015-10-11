@@ -21,3 +21,5 @@ HEADERS  += homepage.h \
 
 FORMS    += homepage.ui \
     loginDialog.ui
+
+RESOURCES +=
