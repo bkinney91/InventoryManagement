@@ -28,7 +28,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="usernameInput"/>
+          <widget class="QLineEdit" name="usernameInput">
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -45,6 +49,9 @@
           <widget class="QLineEdit" name="passwordInput">
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="clearButtonEnabled">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
