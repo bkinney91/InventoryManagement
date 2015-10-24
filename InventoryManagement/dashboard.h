@@ -1,22 +1,15 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
 
+#include "DashboardDAL.h"
 
-class dashboard
+class Dashboard
 {
 public:
-    decimal mtdOrdersCost;
-    decimal mtdSalesValue;
-    decimal overheadValue;
-    decimal overHeadCost;
-    decimal overHeadNet;
-    QList<Inventory> outOfStockItems();
-    dashboard();
-    void getMTDOrderCost();
-    void getMTDSaleValue();
-signals:
+    DashboardDAL& dataAccessLayer;
+    Dashboard();
 
-public slots:
+
 };
 
 #endif // DASHBOARD_H
