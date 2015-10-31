@@ -16,11 +16,11 @@
 // user is a valid user in the database of the inventory management system.
 //
 // args:
-//    *parent (QWidget): The widget that is used for drawing the child widget.
-LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
-    ui(new Ui::LoginDialog)
+//    parent (QWidget*): The widget that is used for drawing the child widget.
+LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent),
+    uiLogin(new Ui::LoginDialog)
 {
-    ui->setupUi(this);
+    uiLogin->setupUi(this);
 
     pathDatabase = qApp->applicationDirPath() + "/sql/db.sqlite3";
 
@@ -30,20 +30,10 @@ LoginDialog::LoginDialog(QWidget *parent) : QDialog(parent),
     QFileInfo sqlFile(pathDatabase);
 
     if(sqlFile.isFile() && posDatabase.open())
-        ui->loginResult->setText("[+]Database connection established");
+        uiLogin->loginResult->setText("[+]Database connection established");
 
     else
-        ui->loginResult->setText("[!]Invalid database");
-}
-
-// TO DO: Needs to be handled by other class, the login dialog is a seperate
-//        entity from the actual inventory management system. The login dialog
-//        will exit and execute the inventory management system. The database must
-//        remain open.
-LoginDialog::~LoginDialog()
-{
-    delete ui;
-    posDatabase.close(); // Remove this later.
+        uiLogin->loginResult->setText("[!]Invalid database");
 }
 
 // Slot for the login button clicked signal. The button will attempt to login
@@ -51,12 +41,12 @@ LoginDialog::~LoginDialog()
 // valid credentials or if the user is a valid user in the system.
 void LoginDialog::on_loginButton_clicked()
 {
-    QString username = ui->usernameInput->text();
-    QString password = ui->passwordInput->text();
+    QString username = uiLogin->usernameInput->text();
+    QString password = uiLogin->passwordInput->text();
 
     if(!posDatabase.isOpen())
     {
-        ui->loginResult->setText("[!]Database connection lost");
+        uiLogin->loginResult->setText("[!]Database connection lost");
         return;
     }
 
@@ -67,7 +57,7 @@ void LoginDialog::on_loginButton_clicked()
 
     if(sqlQuery.exec(query) && sqlQuery.next())
     {
-        ui->loginResult->setText("[+]Login successful");
+        uiLogin->loginResult->setText("[+]Login successful");
         homePage.show();
         homePage.setDatabase(posDatabase);
 
@@ -75,13 +65,13 @@ void LoginDialog::on_loginButton_clicked()
     }
 
     else
-        ui->loginResult->setText("[-]Invalid Username or Password");
+        uiLogin->loginResult->setText("[-]Invalid Username or Password");
 }
 
 // Slot for the cancel button clicked signal. The button will erase the
 // contents of the username and password textbox.
 void LoginDialog::on_cancelButton_clicked()
 {
-    ui->usernameInput->setText("");
-    ui->passwordInput->setText("");
+    uiLogin->usernameInput->setText("");
+    uiLogin->passwordInput->setText("");
 }

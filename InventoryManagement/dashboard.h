@@ -1,15 +1,33 @@
 #ifndef DASHBOARD_H
 #define DASHBOARD_H
 
-#include "DashboardDAL.h"
+#include <qlist.h>
+#include <part.h>
 
 class Dashboard
 {
 public:
-    DashboardDAL& dataAccessLayer;
+    QList<Part> outOfStockItems;
+    float mtdOrdersCost;
+    float mtdSalesValue;
+    float overheadValue;
+    float overheadCost;
+    float overheadNet;
+
+    static Dashboard* getDashboardInstance();
+    void getOutOfStockItems();
+    void getMTDOrderCost();
+    void getMTDSaleValue();
+    void getOverheadNet();
+    void getOverheadCost();
+    void getOverheadValue();
+
+private:
     Dashboard();
+    Dashboard(Dashboard const&);
+    void operator=(Dashboard const&);
 
-
+    static Dashboard* dashboardInstance;
 };
 
 #endif // DASHBOARD_H

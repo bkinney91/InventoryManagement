@@ -31,18 +31,17 @@ public:
     // Construct the login dialog.
     //
     // args:
-    //    *parent (QWidget): The widget that is used for drawing the child widget.
-    explicit LoginDialog(QWidget *parent = 0);
+    //    parent (QWidget*): The widget that is used for drawing the child widget.
+    explicit LoginDialog(QWidget* parent = 0);
 
-    // Destruct the login dialog.
-    ~LoginDialog();
+    ~LoginDialog() { delete uiLogin; } // Destruct the login dialog.
 
 private slots:
     void on_loginButton_clicked();  // Slot for the login button clicked signal.
     void on_cancelButton_clicked(); // Slot for the cancel button clicked signal.
 
 private:
-    Ui::LoginDialog *ui;
+    Ui::LoginDialog* uiLogin;
     HomePage homePage;
 
     QSqlDatabase posDatabase; // The connection to the pos database.

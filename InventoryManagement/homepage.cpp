@@ -1,24 +1,24 @@
+// homepage.h
+//
+// Author:      Bryce Kinney & Massimo Cannavo
+//
+// Description: The implementation for the homepage of the inventory
+//              management system. The homepage is the navigation for the
+//              application. It allows the user to perform specified operations
+//              such as administration tasks and updating the inventory.
+
 #include "homepage.h"
 #include "ui_homepage.h"
 
-extern bool is_linux;
-extern bool is_windows;
-
-HomePage::HomePage(QWidget *parent) : QMainWindow(parent),
-    ui(new Ui::HomePage)
+// Construct the homepage window using a QWidget and QWindow. The login dialog
+// will terminate and instantiate the homepage window, if the user's credentials
+// were validated.
+//
+// args:
+//    parent (QWidget*): The widget that is used for drawing the child widget.
+HomePage::HomePage(QWidget* parent) : QMainWindow(parent),
+    uiHomePage(new Ui::HomePage)
 {
-    ui->setupUi(this);
-
-    QStringList data;
-    data << "Massimo" << "Jimmy" << "Mike Tyson";
-
-    stringCompleter = new QCompleter(data, this);
-    stringCompleter->setCaseSensitivity(Qt::CaseInsensitive);
-
-    ui->parts->setCompleter(stringCompleter);
-}
-
-HomePage::~HomePage()
-{
-    delete ui;
+    uiHomePage->setupUi(this);
+    inventory = new Inventory(uiHomePage);
 }
