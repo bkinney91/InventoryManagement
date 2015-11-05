@@ -11,9 +11,7 @@
 #define HOMEPAGE_H
 
 #include <QMainWindow>
-#include <QSqlDatabase>
-#include <QCompleter>
-#include "inventory.h"
+#include "sqlDAL.h"
 
 namespace Ui
 {
@@ -36,18 +34,11 @@ public:
     explicit HomePage(QWidget* parent = 0);
 
     // Destruct the homepage window.
-    ~HomePage() { delete uiHomePage; database.close(); }
-
-    // Allow the homepage to have access to the database.
-    //
-    // Args:
-    //    posDatabase (QSqlDatabase): The database used by the application.
-    void setDatabase(QSqlDatabase posDatabase) { database = posDatabase; }
+    ~HomePage();
 
 private:
     Ui::HomePage* uiHomePage;
-    QSqlDatabase database;
-    Inventory inventory;
+    sqlDAL* sqlDB;
 };
 
 #endif

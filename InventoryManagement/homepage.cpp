@@ -20,5 +20,12 @@ HomePage::HomePage(QWidget* parent) : QMainWindow(parent),
     uiHomePage(new Ui::HomePage)
 {
     uiHomePage->setupUi(this);
-    inventory = new Inventory(uiHomePage);
+    sqlDB = sqlDAL::getInstance("");
+}
+
+// Destruct the homepage window.
+HomePage::~HomePage()
+{
+    delete uiHomePage;
+    sqlDB->disconnect();
 }

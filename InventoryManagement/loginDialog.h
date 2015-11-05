@@ -11,8 +11,8 @@
 #define LOGIN_DIALOG_H
 
 #include <QDialog>
-#include <QtSql>
 #include <QFileInfo>
+#include "sqlDAL.h"
 #include "homepage.h"
 
 namespace Ui
@@ -22,6 +22,8 @@ namespace Ui
 
 // The login dialog consists of a QDialog that creates the interface for the
 // gui dialog. The QDialog class renders the gui of the dialog on the screen.
+// The login dialog will interface with the Data Access Layer (DAL) to initiate
+// a connection to the SQL database and query for the user's login.
 class LoginDialog : public QDialog
 {
     Q_OBJECT
@@ -34,7 +36,8 @@ public:
     //    parent (QWidget*): The widget that is used for drawing the child widget.
     explicit LoginDialog(QWidget* parent = 0);
 
-    ~LoginDialog() { delete uiLogin; } // Destruct the login dialog.
+    // Destruct the login dialog.
+    ~LoginDialog();
 
 private slots:
     void on_loginButton_clicked();  // Slot for the login button clicked signal.
@@ -43,9 +46,7 @@ private slots:
 private:
     Ui::LoginDialog* uiLogin;
     HomePage homePage;
-
-    QSqlDatabase posDatabase; // The connection to the pos database.
-    QString pathDatabase;     // The path of the database.
+    sqlDAL* sqlDB;
 };
 
 #endif
