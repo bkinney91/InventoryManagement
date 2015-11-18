@@ -25,7 +25,7 @@ LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent),
     QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
 
     QFileInfo sqlFile(sqlPath);
-    sqlDB = sqlDAL::getInstance(sqlPath);
+    sqlDAL* sqlDB = sqlDAL::getInstance(sqlPath);
 
     if(sqlDB->connect() && sqlFile.isFile())
         uiLogin->loginResult->setText("[+]Database connection established");

@@ -16,14 +16,16 @@ SOURCES += main.cpp\
         homepage.cpp \
     loginDialog.cpp \
     dashboard.cpp \
-    DashboardDAL.cpp \
-    part.cpp
+    part.cpp \
+    dashboarddal.cpp \
+    sqlDAL.cpp
 
 HEADERS  += homepage.h \
     loginDialog.h \
     dashboard.h \
-    DashboardDAL.h \
-    part.h
+    part.h \
+    dashboarddal.h \
+    sqlDAL.h
 
 FORMS    += homepage.ui \
     loginDialog.ui

@@ -1,44 +1,19 @@
-// homepage.h
-//
-// Author:      Bryce Kinney & Massimo Cannavo
-//
-// Description: The header definition for the homepage of the inventory
-//              management system. The homepage is the navigation for the
-//              application. It allows the user to perform specified operations
-//              such as administration tasks and updating the inventory.
-
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
 #include <QMainWindow>
-#include "sqlDAL.h"
+#include <QWidget>
+#include <QDialog>
 
-namespace Ui
-{
-    class HomePage;
-}
-
-// The homepage consists of a QMainWindow that creates the interface for the
-// gui window. The QMainWindow class renders the gui of the home page window on
-// the screen.
-class HomePage : public QMainWindow
+class HomePage : public QWidget
 {
     Q_OBJECT
-
 public:
+    explicit HomePage(QWidget *parent = 0);
 
-    // Construct the homepage window.
-    //
-    // args:
-    //    parent (QWidget*): The widget that is used for drawing the child widget.
-    explicit HomePage(QWidget* parent = 0);
+signals:
 
-    // Destruct the homepage window.
-    ~HomePage();
-
-private:
-    Ui::HomePage* uiHomePage;
-    sqlDAL* sqlDB;
+public slots:
 };
 
-#endif
+#endif // HOMEPAGE_H

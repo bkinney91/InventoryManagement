@@ -14,7 +14,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QDebug>
-
+#include <QVariant>
 // The Data Access Layer (DAL) instantiates the database connection. Once the
 // connection has been established, the DAL will be used to read and update the
 // database according to the data access model.
@@ -62,7 +62,7 @@ public:
     //
     // Returns:
     //    (bool): Denotes if the record was able to be retrieved.
-    bool result() { return sqlQuery.next(); }
+    QSqlQuery result() { return sqlQuery; }
 
     // The destructor will terminate the database connection.
     ~sqlDAL() { if(isOpen()) disconnect(); }

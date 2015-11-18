@@ -3,6 +3,7 @@
 
 #include <qlist.h>
 #include <part.h>
+#include <dashboarddal.h>
 
 class Dashboard
 {
@@ -13,14 +14,7 @@ public:
     float overheadValue;
     float overheadCost;
     float overheadNet;
-
     static Dashboard* getDashboardInstance();
-    void getOutOfStockItems();
-    void getMTDOrderCost();
-    void getMTDSaleValue();
-    void getOverheadNet();
-    void getOverheadCost();
-    void getOverheadValue();
 
 private:
     Dashboard();

@@ -52,6 +52,7 @@ public:
     QLineEdit *lineEdit_3;
     QLineEdit *lineEdit_4;
     QLineEdit *lineEdit_5;
+    QListWidget *OutOfStockList_2;
     QWidget *Reports;
     QWidget *Administration;
     QMenuBar *menuBar;
@@ -149,6 +150,9 @@ public:
         lineEdit_5 = new QLineEdit(Inventory);
         lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
         lineEdit_5->setGeometry(QRect(179, 24, 41, 23));
+        OutOfStockList_2 = new QListWidget(Inventory);
+        OutOfStockList_2->setObjectName(QStringLiteral("OutOfStockList_2"));
+        OutOfStockList_2->setGeometry(QRect(10, 110, 671, 411));
         tabWidget->addTab(Inventory, QString());
         parts->raise();
         lineEdit_2->raise();
@@ -156,6 +160,7 @@ public:
         lineEdit_4->raise();
         lineEdit_5->raise();
         label->raise();
+        OutOfStockList_2->raise();
         Reports = new QWidget();
         Reports->setObjectName(QStringLiteral("Reports"));
         tabWidget->addTab(Reports, QString());
@@ -165,7 +170,7 @@ public:
         HomePage->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(HomePage);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 903, 21));
+        menuBar->setGeometry(QRect(0, 0, 903, 25));
         menu_File = new QMenu(menuBar);
         menu_File->setObjectName(QStringLiteral("menu_File"));
         HomePage->setMenuBar(menuBar);
@@ -180,7 +185,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(HomePage);
