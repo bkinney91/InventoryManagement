@@ -35,7 +35,7 @@ public:
     // args:
     //    parent (QWidget*): The widget that is used for drawing the child widget.
     explicit LoginDialog(QWidget* parent = 0);
-
+    QString sqlPath;
     // Destruct the login dialog.
     ~LoginDialog();
 

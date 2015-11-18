@@ -20,14 +20,16 @@
 LoginDialog::LoginDialog(QWidget* parent) : QDialog(parent),
     uiLogin(new Ui::LoginDialog)
 {
+    sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
     uiLogin->setupUi(this);
-
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
 
     QFileInfo sqlFile(sqlPath);
-    sqlDAL* sqlDB = sqlDAL::getInstance(sqlPath);
+    QSqlQuery query;
 
-    if(sqlDB->connect() && sqlFile.isFile())
+    if(sqlCon.isOpen() && sqlFile.isFile())
         uiLogin->loginResult->setText("[+]Database connection established");
 
     else
@@ -41,7 +43,9 @@ void LoginDialog::on_loginButton_clicked()
 {
     QString username = uiLogin->usernameInput->text();
     QString password = uiLogin->passwordInput->text();
-
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
+    QSqlQuery query;
     if(!sqlDB->isOpen())
     {
         uiLogin->loginResult->setText("[!]Database connection lost");
@@ -51,11 +55,15 @@ void LoginDialog::on_loginButton_clicked()
     QString sqlQuery = "SELECT User_ID, Password FROM Users WHERE User_ID=\'" +
                         username + "\' AND Password=\'" + password + "\'";
 
-    if(sqlDB->query(sqlQuery) && sqlDB->result())
+    if(query.exec(sqlQuery))
     {
-        uiLogin->loginResult->setText("[+]Login successful");
-        homePage.show();
-        this->close();
+        if(query.next())
+        {
+            uiLogin->loginResult->setText("[+]Login successful");
+            homePage.show();
+            this->close();
+        }
+
     }
 
     else

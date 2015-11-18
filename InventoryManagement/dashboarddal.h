@@ -3,7 +3,8 @@
 #include <QList>
 #include <Part.h>
 #include <sqlDAL.h>
-
+#include <QSqlDatabase>
+#include <QSqlQuery>
 class dashboardDAL
 {
 
@@ -15,7 +16,9 @@ public:
     float getOverheadCost();
     float getOverheadValue();
     QString sqlPath;
+    QSqlDatabase sqlConnection;
 private:
+
 
 //signals:
 

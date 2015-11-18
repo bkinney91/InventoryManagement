@@ -8,6 +8,8 @@
 dashboardDAL::dashboardDAL()
 {
     sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+    sqlConnection = QSqlDatabase::addDatabase("QSQLITE");
+    sqlConnection.setDatabaseName(sqlPath);
 }
 
 
@@ -15,14 +17,13 @@ dashboardDAL::dashboardDAL()
 //Written by Bryce Kinney
 float dashboardDAL::getMTDOrderCost()
 {
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QString mtdOrderCost = "SELECT COUNT(part_cost) as MTDOrderValue FROM Orders WHERE strftime('%m', Order_date)= strftime('%m', 'now') AND  strftime('%Y', Order_date) = strftime('%Y', 'now')";
-    sqlDAL* sql = sqlDAL::getInstance(sqlPath);
-
-    QSqlQuery temp = sql->result();
-    if(sql->query(mtdOrderCost))
+    QSqlQuery query;
+    if(query.exec(mtdOrderCost))
     {
-
-       return temp.value(0).toFloat();
+       return query.value(0).toFloat();
     }
     else
     {
@@ -36,12 +37,15 @@ float dashboardDAL::getMTDOrderCost()
 //Written by Bryce Kinney
 float dashboardDAL::getMTDSaleValue()
 {
+
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QSqlQuery saleQuery;
     QString mtdSaleValue = "SELECT COUNT(sale_price) as MTDSaleValue FROM Sales WHERE strftime('%m', Sale_date) = strftime('%m', 'now') AND  strftime('%Y', Sale_date) = strftime('%Y', 'now')";
 
 
 
-    if(saleQuery.exec(mtdSaleValue) && saleQuery.next())
+    if(saleQuery.exec(mtdSaleValue))
     {
         return saleQuery.value(0).toFloat();
     }
@@ -52,12 +56,15 @@ float dashboardDAL::getMTDSaleValue()
 //Written by Bryce Kinney
 float dashboardDAL::getOverheadValue()
 {
+
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QSqlQuery overheadValueQuery;
     QString overheadValueQString = "SELECT COUNT(Part_price) as OverheadValue FROM Parts WHERE Qty > 0";
 
 
 
-    if(overheadValueQuery.exec(overheadValueQString) && overheadValueQuery.next())
+    if(overheadValueQuery.exec(overheadValueQString))
     {
         return overheadValueQuery.value(0).toFloat();
     }
@@ -68,12 +75,15 @@ float dashboardDAL::getOverheadValue()
 //Written by Bryce Kinney
 float dashboardDAL::getOverheadCost()
 {
+
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QSqlQuery overheadCostQuery;
     QString overheadCostQString = "SELECT COUNT(Part_cost) as OverheadCost FROM Sales WHERE Quantity > 0";
 
 
 
-    if(overheadCostQuery.exec(overheadCostQString) && overheadCostQuery.next())
+    if(overheadCostQuery.exec(overheadCostQString))
     {
         return overheadCostQuery.value(0).toFloat();
     }
@@ -85,6 +95,9 @@ float dashboardDAL::getOverheadCost()
 
 QList<Part> dashboardDAL::getOutOfStockItems()
 {
+
+    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
+    sqlCon.setDatabaseName(sqlPath);
     QList<Part> outOfStockItems;
     QSqlQuery outOfStockQuery;
     QString outOfStockQString = "Select Part_num, Part_name, Part_desc from Parts where Qty = 0";
