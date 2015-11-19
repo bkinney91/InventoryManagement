@@ -34,8 +34,15 @@ public:
     //    parent (QWidget*): The widget that is used for drawing the child widget.
     explicit HomePage(QWidget* parent = 0);
 
+    //
+    void displayInventory(QSqlQueryModel* inventoryTable);
+
     // Destruct the homepage window.
     ~HomePage();
+
+private slots:
+    void on_addRecord_clicked();
+    void on_removeRecord_clicked();
 
 private:
     Ui::HomePage* uiHomePage;

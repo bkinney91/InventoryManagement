@@ -56,10 +56,12 @@ void LoginDialog::on_loginButton_clicked()
     if(sqlDB->query(sqlQuery) && sqlDB->result())
     {
         inventory = new Inventory(sqlPath);
-        inventory->queryInventory();
+        QSqlQueryModel* inventoryTable = inventory->queryInventory();
 
         uiLogin->loginResult->setText("[+]Login successful");
+
         homePage.show();
+        homePage.displayInventory(inventoryTable);
         this->close();
     }
 

@@ -243,95 +243,42 @@
      <attribute name="title">
       <string>Inventory</string>
      </attribute>
-     <widget class="QLineEdit" name="parts">
+     <widget class="QTableView" name="inventoryTable">
       <property name="geometry">
        <rect>
-        <x>10</x>
-        <y>23</y>
-        <width>127</width>
-        <height>23</height>
-       </rect>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>60</y>
-        <width>127</width>
-        <height>23</height>
+        <x>0</x>
+        <y>0</y>
+        <width>901</width>
+        <height>371</height>
        </rect>
       </property>
      </widget>
-     <widget class="QLabel" name="label">
+     <widget class="QPushButton" name="addRecord">
       <property name="geometry">
        <rect>
-        <x>120</x>
-        <y>20</y>
-        <width>31</width>
-        <height>31</height>
+        <x>10</x>
+        <y>390</y>
+        <width>75</width>
+        <height>23</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>icons/search.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>false</bool>
+       <string>Add Item</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QPushButton" name="removeRecord">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>23</y>
-        <width>127</width>
+        <x>100</x>
+        <y>390</y>
+        <width>75</width>
         <height>23</height>
        </rect>
       </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
-      <property name="geometry">
-       <rect>
-        <x>270</x>
-        <y>60</y>
-        <width>127</width>
-        <height>23</height>
-       </rect>
+      <property name="text">
+       <string>Remove Item</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_5">
-      <property name="geometry">
-       <rect>
-        <x>179</x>
-        <y>24</y>
-        <width>41</width>
-        <height>23</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="OutOfStockList_2">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>110</y>
-        <width>671</width>
-        <height>411</height>
-       </rect>
-      </property>
-     </widget>
-     <zorder>parts</zorder>
-     <zorder>lineEdit_2</zorder>
-     <zorder>lineEdit_3</zorder>
-     <zorder>lineEdit_4</zorder>
-     <zorder>lineEdit_5</zorder>
-     <zorder>label</zorder>
-     <zorder>OutOfStockList_2</zorder>
     </widget>
     <widget class="QWidget" name="Reports">
      <attribute name="title">
@@ -354,12 +301,6 @@
      <height>21</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-   </widget>
-   <addaction name="menu_File"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

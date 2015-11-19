@@ -14,6 +14,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlRecord>
+#include <QSqlQueryModel>
 #include <QVariant>
 #include <QList>
 
@@ -71,6 +72,9 @@ public:
     // Returns:
     //     (QList<QString>): A list of string values from the query result.
     QList<QString> next();
+
+    //
+    QSqlQueryModel* sqlTable(QString statement);
 
     // The destructor will terminate the database connection.
     ~sqlDAL() { if(isOpen()) disconnect(); }

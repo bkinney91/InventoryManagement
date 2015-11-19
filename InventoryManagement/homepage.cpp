@@ -25,9 +25,28 @@ HomePage::HomePage(QWidget* parent) : QMainWindow(parent),
     sqlDB = sqlDAL::getInstance(sqlPath);
 }
 
+//
+void HomePage::displayInventory(QSqlQueryModel* inventoryTable)
+{
+    uiHomePage->inventoryTable->setModel(inventoryTable);
+    uiHomePage->inventoryTable->resizeRowsToContents();
+    uiHomePage->inventoryTable->resizeColumnsToContents();
+}
+
+
 // Destruct the homepage window.
 HomePage::~HomePage()
 {
     delete uiHomePage;
     sqlDB->disconnect();
+}
+
+void HomePage::on_addRecord_clicked()
+{
+
+}
+
+void HomePage::on_removeRecord_clicked()
+{
+
 }

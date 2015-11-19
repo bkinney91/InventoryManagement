@@ -75,3 +75,16 @@ QList<QString> sqlDAL::next()
 
     return queryResult;
 }
+
+//
+QSqlQueryModel* sqlDAL::sqlTable(QString statement)
+{
+    QSqlQueryModel* table = new QSqlQueryModel();
+    QSqlQuery sqlQuery(sqlConnection);
+
+    sqlQuery.prepare(statement);
+    sqlQuery.exec();
+    table->setQuery(sqlQuery);
+
+    return table;
+}
