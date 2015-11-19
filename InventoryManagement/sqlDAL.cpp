@@ -22,7 +22,7 @@ sqlDAL* sqlDAL::objSqlDAL = NULL; // Global single instance (singleton) of DAL.
 //    objSqlDAL (sqlDAL*): Single instance of the Data Access Layer.
 sqlDAL* sqlDAL::getInstance(QString sqlPath)
 {
-    if(!objSqlDAL)
+    if(!objSqlDAL && !sqlPath.isEmpty())
         objSqlDAL = new sqlDAL(sqlPath);
 
     return objSqlDAL;
@@ -36,4 +36,42 @@ sqlDAL::sqlDAL(QString sqlPath)
 {
     sqlConnection = QSqlDatabase::addDatabase("QSQLITE");
     sqlConnection.setDatabaseName(sqlPath);
+}
+
+// Attempt to query the database with the specified SQL statement.
+//
+// Args:
+//    statement (QString): The SQL statement to query.
+//
+// Returns:
+//    (bool): Denotes if the query was executed.
+bool sqlDAL::query(QString statement)
+{
+    QSqlQuery sqlQuery(sqlConnection);
+    this->sqlQuery = sqlQuery;
+
+    return this->sqlQuery.exec(statement);
+}
+
+// Fetch the result of the query that was executed.
+//
+// Returns:
+//     (QList<QString>): A list of string values from the query result.
+QList<QString> sqlDAL::next()
+{
+    QSqlRecord record = sqlQuery.record();
+    QList<QString> queryResult;
+
+    for(int i = 0; i < record.count(); ++i)
+        queryResult.append(record.value(i).toString());
+
+    while(sqlQuery.next())
+    {
+        record = sqlQuery.record();
+
+        for(int i = 0; i < record.count(); ++i)
+            queryResult.append(record.value(i).toString());
+    }
+
+    return queryResult;
 }

@@ -14,6 +14,7 @@
 #include <QFileInfo>
 #include "sqlDAL.h"
 #include "homepage.h"
+#include "inventory.h"
 
 namespace Ui
 {
@@ -35,7 +36,7 @@ public:
     // args:
     //    parent (QWidget*): The widget that is used for drawing the child widget.
     explicit LoginDialog(QWidget* parent = 0);
-    QString sqlPath;
+
     // Destruct the login dialog.
     ~LoginDialog();
 
@@ -44,9 +45,10 @@ private slots:
     void on_cancelButton_clicked(); // Slot for the cancel button clicked signal.
 
 private:
-    Ui::LoginDialog* uiLogin;
-    HomePage homePage;
-    sqlDAL* sqlDB;
+    Ui::LoginDialog* uiLogin; // A reference to the UI of the login dialog.
+    HomePage homePage;        // The homepage of the point of sales application.
+    Inventory* inventory;     // A reference to the inventory of the database.
+    sqlDAL* sqlDB;            // Interface for the SQL Data Access Layer.
 };
 
 #endif

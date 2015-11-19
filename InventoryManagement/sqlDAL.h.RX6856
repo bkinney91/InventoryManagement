@@ -13,9 +13,8 @@
 
 #include <QSqlDatabase>
 #include <QSqlQuery>
-#include <QSqlRecord>
-#include <QVariant>
-#include <QList>
+#include <QDebug>
+#include <QSqlError>
 
 // The Data Access Layer (DAL) instantiates the database connection. Once the
 // connection has been established, the DAL will be used to read and update the
@@ -56,7 +55,15 @@ public:
     //
     // Returns:
     //    (bool): Denotes if the query was executed.
-    bool query(QString statement);
+    bool query(QString statement)
+    {
+        QSqlQuery sqlQuery(sqlConnection);
+        this->sqlQuery = sqlQuery;
+        qDebug() << this->sqlQuery.next();
+        qDebug() << this->sqlQuery.exec(statement);
+        return false;
+        //return this->sqlQuery.exec(statement);
+    }
 
     // After the query is executed, the query is positioned on an invalid
     // record and must be navigated to a valid record before data values can
@@ -64,13 +71,13 @@ public:
     //
     // Returns:
     //    (bool): Denotes if the record was able to be retrieved.
-    bool result() { return sqlQuery.first(); }
-
-    // Fetch the result of the query that was executed.
-    //
-    // Returns:
-    //     (QList<QString>): A list of string values from the query result.
-    QList<QString> next();
+    bool result()
+    {
+        //qDebug() << sqlQuery.next();
+        //qDebug() << sqlQuery.lastError().text();
+        return false;
+        //return sqlQuery.next();
+    }
 
     // The destructor will terminate the database connection.
     ~sqlDAL() { if(isOpen()) disconnect(); }
@@ -78,7 +85,7 @@ public:
 private:
     static sqlDAL* objSqlDAL;   // Single instance (singleton) of DAL.
     QSqlDatabase sqlConnection; // Connection to the sql database.
-    QSqlQuery sqlQuery;         // Interface for the SQL query.
+    QSqlQuery sqlQuery;         //
 
     // The constructor will define the SQL connection for the DAL.
     //
