@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\homepage.o
+./debug\loginDialog.o
+./debug\dashboard.o
+./debug\part.o
+./debug\dashboarddal.o
+./debug\sqlDAL.o
+./debug\inventory.o
+./debug\moc_homepage.o
+./debug\moc_loginDialog.o
+);

@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\homepage.o
+./release\loginDialog.o
+./release\dashboard.o
+./release\part.o
+./release\dashboarddal.o
+./release\sqlDAL.o
+./release\inventory.o
+./release\moc_homepage.o
+./release\moc_loginDialog.o
+);
