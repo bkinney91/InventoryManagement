@@ -11,15 +11,14 @@ class dashboardDAL
 public:
     dashboardDAL();
     QList<Part> getOutOfStockItems();
-    float getMTDOrderCost();
-    float getMTDSaleValue();
-    float getOverheadCost();
-    float getOverheadValue();
+    QString getMTDOrderCost();
+    QString getMTDSaleValue();
+    QString getOverheadCost();
+    QString getOverheadValue();
     QString sqlPath;
-    QSqlDatabase sqlConnection;
 private:
 
-
+      sqlDAL* sqlDB;            // Interface for the SQL Data Access Layer.
 //signals:
 
 //public slots:

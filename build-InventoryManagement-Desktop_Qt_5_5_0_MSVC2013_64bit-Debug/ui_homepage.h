@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'homepage.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -15,13 +15,13 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 
@@ -46,17 +46,12 @@ public:
     QLabel *OverheadCostLabel;
     QLabel *OverheadNetLabel;
     QWidget *Inventory;
-    QLineEdit *parts;
-    QLineEdit *lineEdit_2;
-    QLabel *label;
-    QLineEdit *lineEdit_3;
-    QLineEdit *lineEdit_4;
-    QLineEdit *lineEdit_5;
-    QListWidget *OutOfStockList_2;
+    QTableView *inventoryTable;
+    QPushButton *addRecord;
+    QPushButton *removeRecord;
     QWidget *Reports;
     QWidget *Administration;
     QMenuBar *menuBar;
-    QMenu *menu_File;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -129,38 +124,16 @@ public:
         tabWidget->addTab(Dashboard, QString());
         Inventory = new QWidget();
         Inventory->setObjectName(QStringLiteral("Inventory"));
-        parts = new QLineEdit(Inventory);
-        parts->setObjectName(QStringLiteral("parts"));
-        parts->setGeometry(QRect(10, 23, 127, 23));
-        parts->setClearButtonEnabled(false);
-        lineEdit_2 = new QLineEdit(Inventory);
-        lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(10, 60, 127, 23));
-        label = new QLabel(Inventory);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(120, 20, 31, 31));
-        label->setPixmap(QPixmap(QString::fromUtf8("icons/search.png")));
-        label->setScaledContents(false);
-        lineEdit_3 = new QLineEdit(Inventory);
-        lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(270, 23, 127, 23));
-        lineEdit_4 = new QLineEdit(Inventory);
-        lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(270, 60, 127, 23));
-        lineEdit_5 = new QLineEdit(Inventory);
-        lineEdit_5->setObjectName(QStringLiteral("lineEdit_5"));
-        lineEdit_5->setGeometry(QRect(179, 24, 41, 23));
-        OutOfStockList_2 = new QListWidget(Inventory);
-        OutOfStockList_2->setObjectName(QStringLiteral("OutOfStockList_2"));
-        OutOfStockList_2->setGeometry(QRect(10, 110, 671, 411));
+        inventoryTable = new QTableView(Inventory);
+        inventoryTable->setObjectName(QStringLiteral("inventoryTable"));
+        inventoryTable->setGeometry(QRect(0, 0, 901, 371));
+        addRecord = new QPushButton(Inventory);
+        addRecord->setObjectName(QStringLiteral("addRecord"));
+        addRecord->setGeometry(QRect(10, 390, 75, 23));
+        removeRecord = new QPushButton(Inventory);
+        removeRecord->setObjectName(QStringLiteral("removeRecord"));
+        removeRecord->setGeometry(QRect(100, 390, 75, 23));
         tabWidget->addTab(Inventory, QString());
-        parts->raise();
-        lineEdit_2->raise();
-        lineEdit_3->raise();
-        lineEdit_4->raise();
-        lineEdit_5->raise();
-        label->raise();
-        OutOfStockList_2->raise();
         Reports = new QWidget();
         Reports->setObjectName(QStringLiteral("Reports"));
         tabWidget->addTab(Reports, QString());
@@ -170,9 +143,7 @@ public:
         HomePage->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(HomePage);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 903, 25));
-        menu_File = new QMenu(menuBar);
-        menu_File->setObjectName(QStringLiteral("menu_File"));
+        menuBar->setGeometry(QRect(0, 0, 903, 21));
         HomePage->setMenuBar(menuBar);
         mainToolBar = new QToolBar(HomePage);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -180,8 +151,6 @@ public:
         statusBar = new QStatusBar(HomePage);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         HomePage->setStatusBar(statusBar);
-
-        menuBar->addAction(menu_File->menuAction());
 
         retranslateUi(HomePage);
 
@@ -209,11 +178,11 @@ public:
         OverheadCostLabel->setText(QApplication::translate("HomePage", "Cost", 0));
         OverheadNetLabel->setText(QApplication::translate("HomePage", "Net", 0));
         tabWidget->setTabText(tabWidget->indexOf(Dashboard), QApplication::translate("HomePage", "Dashboard", 0));
-        label->setText(QString());
+        addRecord->setText(QApplication::translate("HomePage", "Add Item", 0));
+        removeRecord->setText(QApplication::translate("HomePage", "Remove Item", 0));
         tabWidget->setTabText(tabWidget->indexOf(Inventory), QApplication::translate("HomePage", "Inventory", 0));
         tabWidget->setTabText(tabWidget->indexOf(Reports), QApplication::translate("HomePage", "Reports", 0));
         tabWidget->setTabText(tabWidget->indexOf(Administration), QApplication::translate("HomePage", "Administration", 0));
-        menu_File->setTitle(QApplication::translate("HomePage", "&File", 0));
     } // retranslateUi
 
 };

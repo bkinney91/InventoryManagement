@@ -45,6 +45,9 @@ public:
     QLabel *ValueLabel;
     QLabel *OverheadCostLabel;
     QLabel *OverheadNetLabel;
+    QLabel *OverheadValueDisplay;
+    QLabel *OverheadCostDisplay;
+    QLabel *OverheadNetDisplay;
     QWidget *Inventory;
     QTableView *inventoryTable;
     QPushButton *addRecord;
@@ -98,7 +101,7 @@ public:
         OutOfStockLabel->setLineWidth(1);
         OrderDisplay = new QLabel(Dashboard);
         OrderDisplay->setObjectName(QStringLiteral("OrderDisplay"));
-        OrderDisplay->setGeometry(QRect(110, 100, 141, 16));
+        OrderDisplay->setGeometry(QRect(100, 100, 141, 16));
         OrderDisplay->setFont(font1);
         SalesDisplay = new QLabel(Dashboard);
         SalesDisplay->setObjectName(QStringLiteral("SalesDisplay"));
@@ -121,6 +124,18 @@ public:
         OverheadNetLabel->setObjectName(QStringLiteral("OverheadNetLabel"));
         OverheadNetLabel->setGeometry(QRect(420, 200, 61, 16));
         OverheadNetLabel->setFont(font1);
+        OverheadValueDisplay = new QLabel(Dashboard);
+        OverheadValueDisplay->setObjectName(QStringLiteral("OverheadValueDisplay"));
+        OverheadValueDisplay->setGeometry(QRect(480, 100, 141, 16));
+        OverheadValueDisplay->setFont(font1);
+        OverheadCostDisplay = new QLabel(Dashboard);
+        OverheadCostDisplay->setObjectName(QStringLiteral("OverheadCostDisplay"));
+        OverheadCostDisplay->setGeometry(QRect(480, 150, 141, 16));
+        OverheadCostDisplay->setFont(font1);
+        OverheadNetDisplay = new QLabel(Dashboard);
+        OverheadNetDisplay->setObjectName(QStringLiteral("OverheadNetDisplay"));
+        OverheadNetDisplay->setGeometry(QRect(480, 200, 141, 16));
+        OverheadNetDisplay->setFont(font1);
         tabWidget->addTab(Dashboard, QString());
         Inventory = new QWidget();
         Inventory->setObjectName(QStringLiteral("Inventory"));
@@ -154,7 +169,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(HomePage);
@@ -177,6 +192,9 @@ public:
         ValueLabel->setText(QApplication::translate("HomePage", "Value", 0));
         OverheadCostLabel->setText(QApplication::translate("HomePage", "Cost", 0));
         OverheadNetLabel->setText(QApplication::translate("HomePage", "Net", 0));
+        OverheadValueDisplay->setText(QApplication::translate("HomePage", "OverheadValueDisplay", 0));
+        OverheadCostDisplay->setText(QApplication::translate("HomePage", "OverheadCostDisplay", 0));
+        OverheadNetDisplay->setText(QApplication::translate("HomePage", "OverheadNetDisplay", 0));
         tabWidget->setTabText(tabWidget->indexOf(Dashboard), QApplication::translate("HomePage", "Dashboard", 0));
         addRecord->setText(QApplication::translate("HomePage", "Add Item", 0));
         removeRecord->setText(QApplication::translate("HomePage", "Remove Item", 0));

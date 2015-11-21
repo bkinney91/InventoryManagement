@@ -22,6 +22,8 @@ Dashboard::Dashboard()
     mtdSalesValue = dataAccessLayer.getMTDSaleValue();
     overheadValue = dataAccessLayer.getOverheadValue();
     overheadCost = dataAccessLayer.getOverheadCost();
-    overheadNet = overheadValue - overheadCost;
+    float net = overheadValue.toFloat() - overheadCost.toFloat();
+    overheadNet = QString::number(net);
+
 }
 

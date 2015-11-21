@@ -8,26 +8,25 @@
 dashboardDAL::dashboardDAL()
 {
     sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
-    sqlConnection = QSqlDatabase::addDatabase("QSQLITE");
-    sqlConnection.setDatabaseName(sqlPath);
+    QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+    sqlDB = sqlDAL::getInstance(sqlPath);
 }
 
 
 //Retrieves the sum of the part_cost field for all orders for the current calendar month
 //Written by Bryce Kinney
-float dashboardDAL::getMTDOrderCost()
+QString dashboardDAL::getMTDOrderCost()
 {
-    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
-    sqlCon.setDatabaseName(sqlPath);
+
+
     QString mtdOrderCost = "SELECT COUNT(part_cost) as MTDOrderValue FROM Orders WHERE strftime('%m', Order_date)= strftime('%m', 'now') AND  strftime('%Y', Order_date) = strftime('%Y', 'now')";
-    QSqlQuery query;
-    if(query.exec(mtdOrderCost))
+    if(sqlDB->query(mtdOrderCost) && sqlDB->result())
     {
-       return query.value(0).toFloat();
+       return sqlDB->next().at(0);
     }
     else
     {
-        return -1;
+        return "Error Connecting to database";
     }
 
 }
@@ -35,59 +34,53 @@ float dashboardDAL::getMTDOrderCost()
 
 //Retrieves the sum of the sale_price for all sales for the current calendar month
 //Written by Bryce Kinney
-float dashboardDAL::getMTDSaleValue()
+QString dashboardDAL::getMTDSaleValue()
 {
 
-    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
-    sqlCon.setDatabaseName(sqlPath);
-    QSqlQuery saleQuery;
     QString mtdSaleValue = "SELECT COUNT(sale_price) as MTDSaleValue FROM Sales WHERE strftime('%m', Sale_date) = strftime('%m', 'now') AND  strftime('%Y', Sale_date) = strftime('%Y', 'now')";
 
-
-
-    if(saleQuery.exec(mtdSaleValue))
+    if(sqlDB->query(mtdSaleValue) && sqlDB->result())
     {
-        return saleQuery.value(0).toFloat();
+       return sqlDB->next().at(0);
     }
-    return -1;
+    else
+    {
+        return "Error Connecting to database";
+    }
 }
 
 //Retrieves the sum of the sales_price for all of the in stock items
 //Written by Bryce Kinney
-float dashboardDAL::getOverheadValue()
+QString dashboardDAL::getOverheadValue()
 {
 
-    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
-    sqlCon.setDatabaseName(sqlPath);
-    QSqlQuery overheadValueQuery;
-    QString overheadValueQString = "SELECT COUNT(Part_price) as OverheadValue FROM Parts WHERE Qty > 0";
+    QString overheadValue = "SELECT COUNT(Part_price) as OverheadValue FROM Parts WHERE Qty > 0";
 
-
-
-    if(overheadValueQuery.exec(overheadValueQString))
+    if(sqlDB->query(overheadValue) && sqlDB->result())
     {
-        return overheadValueQuery.value(0).toFloat();
+       return sqlDB->next().at(0);
     }
-    return -1;
+    else
+    {
+        return "Error Connecting to database";
+    }
 }
 
 //Retrieves the sum of the cost for all in stock items
 //Written by Bryce Kinney
-float dashboardDAL::getOverheadCost()
+QString dashboardDAL::getOverheadCost()
 {
 
-    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
-    sqlCon.setDatabaseName(sqlPath);
-    QSqlQuery overheadCostQuery;
-    QString overheadCostQString = "SELECT COUNT(Part_cost) as OverheadCost FROM Sales WHERE Quantity > 0";
+    QString overheadCost = "SELECT COUNT(Part_cost) as OverheadCost FROM Parts WHERE QTY > 0";
 
-
-
-    if(overheadCostQuery.exec(overheadCostQString))
+    if(sqlDB->query(overheadCost) && sqlDB->result())
     {
-        return overheadCostQuery.value(0).toFloat();
+       return sqlDB->next().at(0);
     }
-    return -1;
+    else
+    {
+        return "Error Connecting to database";
+    }
 }
 
 
@@ -95,20 +88,20 @@ float dashboardDAL::getOverheadCost()
 
 QList<Part> dashboardDAL::getOutOfStockItems()
 {
-
-    QSqlDatabase sqlCon = QSqlDatabase::addDatabase("QSQLITE");
-    sqlCon.setDatabaseName(sqlPath);
     QList<Part> outOfStockItems;
-    QSqlQuery outOfStockQuery;
-    QString outOfStockQString = "Select Part_num, Part_name, Part_desc from Parts where Qty = 0";
-    if(outOfStockQuery.exec(outOfStockQString))
+    QString outOfStockQuery = "Select Part_num, Part_name, Part_desc from Parts where Qty = 0";
+    if(sqlDB->query(outOfStockQuery) && sqlDB->result())
     {
-        while(outOfStockQuery.next())
+        QList<QString> queryList = sqlDB->next();
+        while(!queryList.empty())
         {
            Part currentPart;
-           currentPart.number = outOfStockQuery.value(0).toInt();
-           currentPart.name = outOfStockQuery.value(1).toString();
-           currentPart.description = outOfStockQuery.value(2).toString();
+           currentPart.number = queryList.at(0).toInt();
+           queryList.pop_front();
+           currentPart.name =  queryList.at(0);
+           queryList.pop_front();
+           currentPart.description = queryList.at(0);
+           queryList.pop_front();
            outOfStockItems.append(currentPart);
         }
     }

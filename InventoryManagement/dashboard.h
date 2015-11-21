@@ -9,11 +9,11 @@ class Dashboard
 {
 public:
     QList<Part> outOfStockItems;
-    float mtdOrdersCost;
-    float mtdSalesValue;
-    float overheadValue;
-    float overheadCost;
-    float overheadNet;
+    QString mtdOrdersCost;
+    QString mtdSalesValue;
+    QString overheadValue;
+    QString overheadCost;
+    QString overheadNet;
     static Dashboard* getDashboardInstance();
 
 private:

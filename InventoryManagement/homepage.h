@@ -13,6 +13,7 @@
 #include <QMainWindow>
 #include "sqlDAL.h"
 #include "inventory.h"
+#include "dashboard.h"
 
 namespace Ui
 {
@@ -47,6 +48,7 @@ private slots:
 private:
     Ui::HomePage* uiHomePage;
     sqlDAL* sqlDB;
+
 };
 
 #endif

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'loginDialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -28,7 +28,6 @@ class Ui_LoginDialog
 {
 public:
     QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout_3;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
     QLabel *usernameLabel;
@@ -50,9 +49,6 @@ public:
         gridLayout->setSpacing(6);
         gridLayout->setContentsMargins(11, 11, 11, 11);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
@@ -92,7 +88,7 @@ public:
         verticalLayout->addLayout(horizontalLayout_2);
 
 
-        horizontalLayout_3->addLayout(verticalLayout);
+        gridLayout->addLayout(verticalLayout, 0, 0, 1, 1);
 
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
@@ -108,17 +104,14 @@ public:
         verticalLayout_2->addWidget(cancelButton);
 
 
-        horizontalLayout_3->addLayout(verticalLayout_2);
-
-
-        gridLayout->addLayout(horizontalLayout_3, 0, 0, 1, 1);
+        gridLayout->addLayout(verticalLayout_2, 0, 1, 1, 1);
 
         loginResult = new QLabel(LoginDialog);
         loginResult->setObjectName(QStringLiteral("loginResult"));
         loginResult->setFrameShape(QFrame::Box);
         loginResult->setFrameShadow(QFrame::Raised);
 
-        gridLayout->addWidget(loginResult, 1, 0, 1, 1);
+        gridLayout->addWidget(loginResult, 1, 0, 1, 2);
 
 
         retranslateUi(LoginDialog);
@@ -130,9 +123,9 @@ public:
     {
         LoginDialog->setWindowTitle(QApplication::translate("LoginDialog", "Dialog", 0));
         usernameLabel->setText(QApplication::translate("LoginDialog", "Username:", 0));
-        passwordLabel->setText(QApplication::translate("LoginDialog", "  Password:", 0));
+        passwordLabel->setText(QApplication::translate("LoginDialog", "Password: ", 0));
         loginButton->setText(QApplication::translate("LoginDialog", "Login", 0));
-        cancelButton->setText(QApplication::translate("LoginDialog", "Cancel", 0));
+        cancelButton->setText(QApplication::translate("LoginDialog", "Clear", 0));
         loginResult->setText(QApplication::translate("LoginDialog", "[+]Status", 0));
     } // retranslateUi
 

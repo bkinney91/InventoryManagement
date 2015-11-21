@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Dashboard">
      <property name="toolTip">
@@ -128,7 +128,7 @@
      <widget class="QLabel" name="OrderDisplay">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>100</x>
         <y>100</y>
         <width>141</width>
         <height>16</height>
@@ -236,6 +236,60 @@
       </property>
       <property name="text">
        <string>Net</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="OverheadValueDisplay">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>100</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>OverheadValueDisplay</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="OverheadCostDisplay">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>150</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>OverheadCostDisplay</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="OverheadNetDisplay">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>200</y>
+        <width>141</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>OverheadNetDisplay</string>
       </property>
      </widget>
     </widget>
