@@ -5,8 +5,13 @@
 #include <QVariant>
 #include <string>
 
+
+
 Dashboard* Dashboard::dashboardInstance = NULL;
 
+//Gives pointer to a dashboard instance
+//Uses Singleton design pattern
+//Written by Bryce Kinney
 Dashboard* Dashboard::getDashboardInstance()
 {
     if(!dashboardInstance)
@@ -14,7 +19,11 @@ Dashboard* Dashboard::getDashboardInstance()
 
     return dashboardInstance;
 }
-
+//Dashboard constructor
+//Set to private for Singleton Design Pattern
+//Creates instance of Data Access Layer for the dashboard
+//and executes all functions to populate data members
+//Written by Bryce Kinney
 Dashboard::Dashboard()
 {
     dashboardDAL dataAccessLayer;

@@ -27,7 +27,8 @@ HomePage::HomePage(QWidget* parent) : QMainWindow(parent),
 
 }
 
-
+//Calls dashboard constructor and sets all data members to relevant UI items
+//Written by Bryce Kinney
 void HomePage::displayDashboard()
 {
     Dashboard* dashboard = Dashboard::getDashboardInstance();
