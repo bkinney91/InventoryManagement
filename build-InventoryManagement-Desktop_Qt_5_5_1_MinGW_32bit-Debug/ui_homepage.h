@@ -15,7 +15,6 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -37,7 +36,6 @@ public:
     QLabel *MTDLabel;
     QLabel *OrdersLabel;
     QLabel *ProfitLabel;
-    QListWidget *OutOfStockList;
     QLabel *OutOfStockLabel;
     QLabel *OrderDisplay;
     QLabel *SalesDisplay;
@@ -48,6 +46,7 @@ public:
     QLabel *OverheadValueDisplay;
     QLabel *OverheadCostDisplay;
     QLabel *OverheadNetDisplay;
+    QTableView *outOfStockItems;
     QWidget *Inventory;
     QTableView *inventoryTable;
     QPushButton *addRecord;
@@ -91,9 +90,6 @@ public:
         ProfitLabel->setObjectName(QStringLiteral("ProfitLabel"));
         ProfitLabel->setGeometry(QRect(30, 160, 47, 13));
         ProfitLabel->setFont(font1);
-        OutOfStockList = new QListWidget(Dashboard);
-        OutOfStockList->setObjectName(QStringLiteral("OutOfStockList"));
-        OutOfStockList->setGeometry(QRect(30, 310, 671, 192));
         OutOfStockLabel = new QLabel(Dashboard);
         OutOfStockLabel->setObjectName(QStringLiteral("OutOfStockLabel"));
         OutOfStockLabel->setGeometry(QRect(30, 230, 281, 41));
@@ -136,6 +132,9 @@ public:
         OverheadNetDisplay->setObjectName(QStringLiteral("OverheadNetDisplay"));
         OverheadNetDisplay->setGeometry(QRect(480, 200, 141, 16));
         OverheadNetDisplay->setFont(font1);
+        outOfStockItems = new QTableView(Dashboard);
+        outOfStockItems->setObjectName(QStringLiteral("outOfStockItems"));
+        outOfStockItems->setGeometry(QRect(30, 280, 741, 261));
         tabWidget->addTab(Dashboard, QString());
         Inventory = new QWidget();
         Inventory->setObjectName(QStringLiteral("Inventory"));

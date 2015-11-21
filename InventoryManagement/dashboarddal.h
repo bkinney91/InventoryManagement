@@ -10,7 +10,7 @@ class dashboardDAL
 
 public:
     dashboardDAL();
-    QList<Part> getOutOfStockItems();
+    QSqlQueryModel* getOutOfStockItems();
     QString getMTDOrderCost();
     QString getMTDSaleValue();
     QString getOverheadCost();

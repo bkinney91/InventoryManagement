@@ -9,6 +9,7 @@ class Dashboard
 {
 public:
     QList<Part> outOfStockItems;
+    QSqlQueryModel *outOfStockTable;
     QString mtdOrdersCost;
     QString mtdSalesValue;
     QString overheadValue;

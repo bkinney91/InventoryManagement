@@ -712,9 +712,6 @@ release/homepage.o: ../InventoryManagement/homepage.cpp ../InventoryManagement/h
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/QLabel \
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qlabel.h \
-		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/QListWidget \
-		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qlistwidget.h \
-		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qlistview.h \
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/QMenuBar \
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qmenubar.h \
 		D:/Program\ Files/QT/5.5/mingw492_32/include/QtWidgets/qmenu.h \

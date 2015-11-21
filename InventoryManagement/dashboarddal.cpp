@@ -5,6 +5,9 @@
 #include <QList>
 #include <sqlDAL.h>
 #include <QApplication>
+
+//Constructor for Dashboard
+//Written by Bryce Kinney
 dashboardDAL::dashboardDAL()
 {
     sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
@@ -84,11 +87,26 @@ QString dashboardDAL::getOverheadCost()
 }
 
 
-
-
-QList<Part> dashboardDAL::getOutOfStockItems()
+//Gets list of all parts that have 0 in stock
+//Written by Bryce Kinney
+QSqlQueryModel* dashboardDAL::getOutOfStockItems()
 {
-    QList<Part> outOfStockItems;
+
+    QSqlQueryModel* outOfStockTable;
+
+    if(!sqlDB->isOpen())
+        return outOfStockTable;
+
+    QString sqlQuery = "Select Part_num, Part_name, Part_desc from Parts where Qty = 0";
+    outOfStockTable = sqlDB->sqlTable(sqlQuery);
+
+    return outOfStockTable;
+
+
+
+
+    /*
+     * QList<Part> outOfStockItems;
     QString outOfStockQuery = "Select Part_num, Part_name, Part_desc from Parts where Qty = 0";
     if(sqlDB->query(outOfStockQuery) && sqlDB->result())
     {
@@ -96,7 +114,7 @@ QList<Part> dashboardDAL::getOutOfStockItems()
         while(!queryList.empty())
         {
            Part currentPart;
-           currentPart.number = queryList.at(0).toInt();
+           currentPart.number = queryList.at(0);
            queryList.pop_front();
            currentPart.name =  queryList.at(0);
            queryList.pop_front();
@@ -106,6 +124,5 @@ QList<Part> dashboardDAL::getOutOfStockItems()
         }
     }
     return outOfStockItems;
-
-
+    */
 }

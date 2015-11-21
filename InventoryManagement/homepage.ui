@@ -92,16 +92,6 @@
        <string>Sales</string>
       </property>
      </widget>
-     <widget class="QListWidget" name="OutOfStockList">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>310</y>
-        <width>671</width>
-        <height>192</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QLabel" name="OutOfStockLabel">
       <property name="geometry">
        <rect>
@@ -290,6 +280,16 @@
       </property>
       <property name="text">
        <string>OverheadNetDisplay</string>
+      </property>
+     </widget>
+     <widget class="QTableView" name="outOfStockItems">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>280</y>
+        <width>741</width>
+        <height>261</height>
+       </rect>
       </property>
      </widget>
     </widget>

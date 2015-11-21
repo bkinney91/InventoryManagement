@@ -62,6 +62,7 @@ void LoginDialog::on_loginButton_clicked()
 
         homePage.show();
         homePage.displayInventory(inventoryTable);
+        homePage.displayDashboard();
         this->close();
     }
 

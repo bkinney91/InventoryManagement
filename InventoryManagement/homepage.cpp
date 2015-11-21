@@ -23,12 +23,22 @@ HomePage::HomePage(QWidget* parent) : QMainWindow(parent),
 
     QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
     sqlDB = sqlDAL::getInstance(sqlPath);
+
+
+}
+
+
+void HomePage::displayDashboard()
+{
     Dashboard* dashboard = Dashboard::getDashboardInstance();
     uiHomePage->OrderDisplay->setText(dashboard->mtdOrdersCost);
     uiHomePage->SalesDisplay->setText(dashboard->mtdOrdersCost);
     uiHomePage->OverheadCostDisplay->setText(dashboard->overheadCost);
     uiHomePage->OverheadValueDisplay->setText(dashboard->overheadValue);
     uiHomePage->OverheadNetDisplay->setText(dashboard->overheadNet);
+    uiHomePage->outOfStockItems->setModel(dashboard->outOfStockTable);
+    uiHomePage->outOfStockItems->resizeRowsToContents();
+    uiHomePage->outOfStockItems->resizeColumnsToContents();
 
 }
 

@@ -24,6 +24,8 @@ Dashboard::Dashboard()
     overheadCost = dataAccessLayer.getOverheadCost();
     float net = overheadValue.toFloat() - overheadCost.toFloat();
     overheadNet = QString::number(net);
+    //outOfStockItems = dataAccessLayer.getOutOfStockItems();
+    outOfStockTable = dataAccessLayer.getOutOfStockItems();
 
 }
 

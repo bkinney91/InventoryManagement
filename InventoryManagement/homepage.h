@@ -37,7 +37,7 @@ public:
 
     //
     void displayInventory(QSqlQueryModel* inventoryTable);
-
+    void displayDashboard();
     // Destruct the homepage window.
     ~HomePage();
 
@@ -48,6 +48,7 @@ private slots:
 private:
     Ui::HomePage* uiHomePage;
     sqlDAL* sqlDB;
+
 
 };
 
