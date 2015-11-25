@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 class dashboardDAL
 {
-
+//test
 public:
     dashboardDAL();
     QSqlQueryModel* getOutOfStockItems();
