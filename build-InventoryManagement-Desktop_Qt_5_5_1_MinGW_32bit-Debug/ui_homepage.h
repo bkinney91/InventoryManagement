@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -52,6 +53,8 @@ public:
     QPushButton *addRecord;
     QPushButton *removeRecord;
     QWidget *Reports;
+    QComboBox *ReportsDropDown;
+    QTableView *reportTable;
     QWidget *Administration;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -150,6 +153,12 @@ public:
         tabWidget->addTab(Inventory, QString());
         Reports = new QWidget();
         Reports->setObjectName(QStringLiteral("Reports"));
+        ReportsDropDown = new QComboBox(Reports);
+        ReportsDropDown->setObjectName(QStringLiteral("ReportsDropDown"));
+        ReportsDropDown->setGeometry(QRect(0, 0, 161, 25));
+        reportTable = new QTableView(Reports);
+        reportTable->setObjectName(QStringLiteral("reportTable"));
+        reportTable->setGeometry(QRect(0, 30, 901, 371));
         tabWidget->addTab(Reports, QString());
         Administration = new QWidget();
         Administration->setObjectName(QStringLiteral("Administration"));
@@ -157,7 +166,7 @@ public:
         HomePage->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(HomePage);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 903, 21));
+        menuBar->setGeometry(QRect(0, 0, 903, 31));
         HomePage->setMenuBar(menuBar);
         mainToolBar = new QToolBar(HomePage);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -168,7 +177,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(HomePage);
@@ -198,6 +207,11 @@ public:
         addRecord->setText(QApplication::translate("HomePage", "Add Item", 0));
         removeRecord->setText(QApplication::translate("HomePage", "Remove Item", 0));
         tabWidget->setTabText(tabWidget->indexOf(Inventory), QApplication::translate("HomePage", "Inventory", 0));
+        ReportsDropDown->clear();
+        ReportsDropDown->insertItems(0, QStringList()
+         << QApplication::translate("HomePage", "User Report", 0)
+         << QApplication::translate("HomePage", "Order Report", 0)
+        );
         tabWidget->setTabText(tabWidget->indexOf(Reports), QApplication::translate("HomePage", "Reports", 0));
         tabWidget->setTabText(tabWidget->indexOf(Administration), QApplication::translate("HomePage", "Administration", 0));
     } // retranslateUi

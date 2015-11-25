@@ -7,6 +7,7 @@ INPUT(
 ./release\dashboarddal.o
 ./release\sqlDAL.o
 ./release\inventory.o
+./release\reports.o
 ./release\moc_homepage.o
 ./release\moc_loginDialog.o
 );

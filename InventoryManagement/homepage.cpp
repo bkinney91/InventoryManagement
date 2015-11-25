@@ -9,7 +9,7 @@
 
 #include "homepage.h"
 #include "ui_homepage.h"
-#include "report.h"
+#include "reports.h"
 // Construct the homepage window using a QWidget and QWindow. The login dialog
 // will terminate and instantiate the homepage window, if the user's credentials
 // were validated.
@@ -69,7 +69,7 @@ void HomePage::on_removeRecord_clicked()
 
 }
 
-QString HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
+void HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
 {
     QString report =  uiHomePage->ReportsDropDown->currentText();
     Reports reportObj;
@@ -78,5 +78,5 @@ QString HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
     uiHomePage->reportTable->resizeRowsToContents();
     uiHomePage->reportTable->resizeColumnsToContents();
 
-  return report;
+
 }

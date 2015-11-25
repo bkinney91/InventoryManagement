@@ -38,13 +38,14 @@ public:
     //
     void displayInventory(QSqlQueryModel* inventoryTable);
     void displayDashboard();
+
     // Destruct the homepage window.
     ~HomePage();
 
 private slots:
     void on_addRecord_clicked();
     void on_removeRecord_clicked();
-
+    void on_ReportsDropDown_currentIndexChanged(const QString&);
 private:
     Ui::HomePage* uiHomePage;
     sqlDAL* sqlDB;

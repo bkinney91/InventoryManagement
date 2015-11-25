@@ -5,7 +5,12 @@
 
 #include "reports.h"
 
-QSqlQueryModel* Reports::queryReports()
+
+Reports::Reports(){
+
+}
+
+QSqlQueryModel* Reports::queryReports(QString reportType)
 {
     QSqlQueryModel* table1;
 
@@ -18,7 +23,7 @@ QSqlQueryModel* Reports::queryReports()
     if(!sqlDB->isOpen())
         return table1;
 
-    if(*value== "User Report")
+    if(reportType== "User Report")
     {
 
     QString sqlQuery = "SELECT * FROM Users";
@@ -26,7 +31,7 @@ QSqlQueryModel* Reports::queryReports()
      return table1;
     }
 
-    if(*value== "Order Report")
+    if(reportType== "Order Report")
     {
      QString sqlQuery = "SELECT * FROM Orders";
      table1 = sqlDB->sqlTable(sqlQuery);

@@ -7,6 +7,7 @@ INPUT(
 ./debug\dashboarddal.o
 ./debug\sqlDAL.o
 ./debug\inventory.o
+./debug\reports.o
 ./debug\moc_homepage.o
 ./debug\moc_loginDialog.o
 );
