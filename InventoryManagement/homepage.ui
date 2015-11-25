@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="Dashboard">
      <property name="toolTip">
@@ -338,6 +338,36 @@
      <attribute name="title">
       <string>Reports</string>
      </attribute>
+     <widget class="QComboBox" name="ReportsDropDown">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>161</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>User Report</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Order Report</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QTableView" name="reportTable">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>30</y>
+        <width>901</width>
+        <height>371</height>
+       </rect>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="Administration">
      <attribute name="title">
@@ -352,7 +382,7 @@
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>21</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>
