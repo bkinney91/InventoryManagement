@@ -11,7 +11,6 @@
 dashboardDAL::dashboardDAL()
 {
     sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
-    QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
     sqlDB = sqlDAL::getInstance(sqlPath);
 }
 
