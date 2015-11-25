@@ -6,18 +6,17 @@
 #include "reports.h"
 
 
-Reports::Reports(){
-
+Reports::Reports()
+{
+    sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+    QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+    sqlDB = sqlDAL::getInstance(sqlPath);
 }
 
 QSqlQueryModel* Reports::queryReports(QString reportType)
 {
     QSqlQueryModel* table1;
 
-
-    QString sqlQuery = "SELECT * FROM Users";
-    table1 = sqlDB->sqlTable(sqlQuery);
-     return table1;
 
 
     if(!sqlDB->isOpen())

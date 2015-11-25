@@ -18,7 +18,7 @@ public:
     Reports();
     Reports(QString sqlPath) { sqlDB = sqlDAL::getInstance(sqlPath); }
     QSqlQueryModel* queryReports(QString);
-
+    QString sqlPath;
 
 
 private:
