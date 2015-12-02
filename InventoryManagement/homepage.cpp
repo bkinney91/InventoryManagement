@@ -33,7 +33,7 @@ void HomePage::displayDashboard()
 {
     Dashboard* dashboard = Dashboard::getDashboardInstance();
     uiHomePage->OrderDisplay->setText(dashboard->mtdOrdersCost);
-    uiHomePage->SalesDisplay->setText(dashboard->mtdOrdersCost);
+    uiHomePage->SalesDisplay->setText(dashboard->mtdSalesValue);
     uiHomePage->OverheadCostDisplay->setText(dashboard->overheadCost);
     uiHomePage->OverheadValueDisplay->setText(dashboard->overheadValue);
     uiHomePage->OverheadNetDisplay->setText(dashboard->overheadNet);

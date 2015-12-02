@@ -166,7 +166,7 @@ public:
         HomePage->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(HomePage);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 903, 31));
+        menuBar->setGeometry(QRect(0, 0, 903, 21));
         HomePage->setMenuBar(menuBar);
         mainToolBar = new QToolBar(HomePage);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -177,7 +177,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(HomePage);

@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="Dashboard">
      <property name="toolTip">
@@ -382,7 +382,7 @@
      <x>0</x>
      <y>0</y>
      <width>903</width>
-     <height>31</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -21,7 +21,7 @@ QString dashboardDAL::getMTDOrderCost()
 {
 
 
-    QString mtdOrderCost = "SELECT COUNT(part_cost) as MTDOrderValue FROM Orders WHERE strftime('%m', Order_date)= strftime('%m', 'now') AND  strftime('%Y', Order_date) = strftime('%Y', 'now')";
+    QString mtdOrderCost = "SELECT SUM(part_cost) as MTDOrderValue FROM Orders WHERE substr(Order_date, 0,3) = strftime('%m', 'now') AND  substr(Order_date, 7,4) = strftime('%Y', 'now')";
     if(sqlDB->query(mtdOrderCost) && sqlDB->result())
     {
        return sqlDB->next().at(0);
@@ -39,7 +39,7 @@ QString dashboardDAL::getMTDOrderCost()
 QString dashboardDAL::getMTDSaleValue()
 {
 
-    QString mtdSaleValue = "SELECT COUNT(sale_price) as MTDSaleValue FROM Sales WHERE strftime('%m', Sale_date) = strftime('%m', 'now') AND  strftime('%Y', Sale_date) = strftime('%Y', 'now')";
+    QString mtdSaleValue = "SELECT SUM(sale_price) as MTDOrderValue FROM Sales WHERE substr(Sale_date, 0,3) = strftime('%m', 'now') AND  substr(Sale_date, 7,4) = strftime('%Y', 'now')";
 
     if(sqlDB->query(mtdSaleValue) && sqlDB->result())
     {
@@ -56,7 +56,7 @@ QString dashboardDAL::getMTDSaleValue()
 QString dashboardDAL::getOverheadValue()
 {
 
-    QString overheadValue = "SELECT COUNT(Part_price) as OverheadValue FROM Parts WHERE Qty > 0";
+    QString overheadValue = "SELECT SUM(Part_price) as OverheadValue FROM Parts WHERE Qty > 0";
 
     if(sqlDB->query(overheadValue) && sqlDB->result())
     {
@@ -73,7 +73,7 @@ QString dashboardDAL::getOverheadValue()
 QString dashboardDAL::getOverheadCost()
 {
 
-    QString overheadCost = "SELECT COUNT(Part_cost) as OverheadCost FROM Parts WHERE QTY > 0";
+    QString overheadCost = "SELECT SUM(Part_cost) as OverheadCost FROM Parts WHERE QTY > 0";
 
     if(sqlDB->query(overheadCost) && sqlDB->result())
     {
