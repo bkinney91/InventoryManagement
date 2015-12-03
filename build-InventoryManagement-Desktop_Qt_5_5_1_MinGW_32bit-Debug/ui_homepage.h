@@ -14,8 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
@@ -56,6 +58,19 @@ public:
     QComboBox *ReportsDropDown;
     QTableView *reportTable;
     QWidget *Administration;
+    QFrame *frame;
+    QLabel *RemoveUserLabel;
+    QPushButton *removeUser;
+    QLineEdit *RemoveUserLineEdit;
+    QLabel *showRemoved;
+    QLabel *addUser;
+    QLineEdit *UIDlineEdit;
+    QLineEdit *FNAMElineEdit;
+    QLineEdit *LNAMElineEdit;
+    QLineEdit *DOBlineEdit;
+    QLineEdit *PASSlineEdit;
+    QPushButton *AddUserButton;
+    QLabel *Addedlabel;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -162,6 +177,59 @@ public:
         tabWidget->addTab(Reports, QString());
         Administration = new QWidget();
         Administration->setObjectName(QStringLiteral("Administration"));
+        frame = new QFrame(Administration);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(20, 10, 211, 141));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        RemoveUserLabel = new QLabel(frame);
+        RemoveUserLabel->setObjectName(QStringLiteral("RemoveUserLabel"));
+        RemoveUserLabel->setGeometry(QRect(6, 3, 201, 31));
+        QFont font2;
+        font2.setPointSize(14);
+        RemoveUserLabel->setFont(font2);
+        RemoveUserLabel->setLayoutDirection(Qt::LeftToRight);
+        RemoveUserLabel->setFrameShape(QFrame::Box);
+        removeUser = new QPushButton(frame);
+        removeUser->setObjectName(QStringLiteral("removeUser"));
+        removeUser->setGeometry(QRect(10, 70, 75, 23));
+        RemoveUserLineEdit = new QLineEdit(frame);
+        RemoveUserLineEdit->setObjectName(QStringLiteral("RemoveUserLineEdit"));
+        RemoveUserLineEdit->setGeometry(QRect(10, 50, 131, 20));
+        RemoveUserLineEdit->setText(QStringLiteral("First Name"));
+        showRemoved = new QLabel(frame);
+        showRemoved->setObjectName(QStringLiteral("showRemoved"));
+        showRemoved->setGeometry(QRect(6, 103, 131, 20));
+        addUser = new QLabel(Administration);
+        addUser->setObjectName(QStringLiteral("addUser"));
+        addUser->setGeometry(QRect(276, 13, 331, 31));
+        addUser->setFrameShape(QFrame::Box);
+        UIDlineEdit = new QLineEdit(Administration);
+        UIDlineEdit->setObjectName(QStringLiteral("UIDlineEdit"));
+        UIDlineEdit->setGeometry(QRect(280, 70, 113, 20));
+        UIDlineEdit->setText(QStringLiteral("User ID"));
+        UIDlineEdit->setMaxLength(32767);
+        FNAMElineEdit = new QLineEdit(Administration);
+        FNAMElineEdit->setObjectName(QStringLiteral("FNAMElineEdit"));
+        FNAMElineEdit->setGeometry(QRect(410, 70, 113, 20));
+        FNAMElineEdit->setText(QStringLiteral("First name"));
+        LNAMElineEdit = new QLineEdit(Administration);
+        LNAMElineEdit->setObjectName(QStringLiteral("LNAMElineEdit"));
+        LNAMElineEdit->setGeometry(QRect(540, 70, 113, 20));
+        LNAMElineEdit->setText(QStringLiteral("Last Name"));
+        DOBlineEdit = new QLineEdit(Administration);
+        DOBlineEdit->setObjectName(QStringLiteral("DOBlineEdit"));
+        DOBlineEdit->setGeometry(QRect(280, 100, 113, 20));
+        PASSlineEdit = new QLineEdit(Administration);
+        PASSlineEdit->setObjectName(QStringLiteral("PASSlineEdit"));
+        PASSlineEdit->setGeometry(QRect(410, 100, 113, 20));
+        PASSlineEdit->setText(QStringLiteral("Password"));
+        AddUserButton = new QPushButton(Administration);
+        AddUserButton->setObjectName(QStringLiteral("AddUserButton"));
+        AddUserButton->setGeometry(QRect(280, 140, 75, 23));
+        Addedlabel = new QLabel(Administration);
+        Addedlabel->setObjectName(QStringLiteral("Addedlabel"));
+        Addedlabel->setGeometry(QRect(376, 142, 91, 21));
         tabWidget->addTab(Administration, QString());
         HomePage->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(HomePage);
@@ -177,7 +245,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(HomePage);
@@ -209,10 +277,19 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(Inventory), QApplication::translate("HomePage", "Inventory", 0));
         ReportsDropDown->clear();
         ReportsDropDown->insertItems(0, QStringList()
+         << QApplication::translate("HomePage", "Select a Report", 0)
          << QApplication::translate("HomePage", "User Report", 0)
          << QApplication::translate("HomePage", "Order Report", 0)
         );
         tabWidget->setTabText(tabWidget->indexOf(Reports), QApplication::translate("HomePage", "Reports", 0));
+        RemoveUserLabel->setText(QApplication::translate("HomePage", "<html><head/><body><p align=\"center\">Remove User</p></body></html>", 0));
+        removeUser->setText(QApplication::translate("HomePage", "Remove User", 0));
+        showRemoved->setText(QString());
+        addUser->setText(QApplication::translate("HomePage", "<html><head/><body><p align=\"center\"><span style=\" font-size:14pt;\">Add User</span></p></body></html>", 0));
+        UIDlineEdit->setInputMask(QString());
+        DOBlineEdit->setText(QApplication::translate("HomePage", "D/O/B", 0));
+        AddUserButton->setText(QApplication::translate("HomePage", "Add User", 0));
+        Addedlabel->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(Administration), QApplication::translate("HomePage", "Administration", 0));
     } // retranslateUi
 

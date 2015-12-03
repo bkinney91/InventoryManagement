@@ -14,6 +14,7 @@
 #include "sqlDAL.h"
 #include "inventory.h"
 #include "dashboard.h"
+#include "administration.h"
 
 namespace Ui
 {
@@ -46,6 +47,9 @@ private slots:
     void on_addRecord_clicked();
     void on_removeRecord_clicked();
     void on_ReportsDropDown_currentIndexChanged(const QString&);
+    void on_removeUser_clicked();
+    void on_AddUserButton_clicked();
+
 private:
     Ui::HomePage* uiHomePage;
     sqlDAL* sqlDB;

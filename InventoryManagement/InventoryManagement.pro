@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     dashboarddal.cpp \
     sqlDAL.cpp \
     inventory.cpp \
-    reports.cpp
+    reports.cpp \
+    administration.cpp
 
 HEADERS  += homepage.h \
     loginDialog.h \
@@ -29,7 +30,8 @@ HEADERS  += homepage.h \
     dashboarddal.h \
     sqlDAL.h \
     inventory.h \
-    reports.h
+    reports.h \
+    administration.h
 
 FORMS    += homepage.ui \
     loginDialog.ui

@@ -10,6 +10,7 @@
 #include "homepage.h"
 #include "ui_homepage.h"
 #include "reports.h"
+#include "administration.h"
 // Construct the homepage window using a QWidget and QWindow. The login dialog
 // will terminate and instantiate the homepage window, if the user's credentials
 // were validated.
@@ -33,7 +34,7 @@ void HomePage::displayDashboard()
 {
     Dashboard* dashboard = Dashboard::getDashboardInstance();
     uiHomePage->OrderDisplay->setText(dashboard->mtdOrdersCost);
-    uiHomePage->SalesDisplay->setText(dashboard->mtdSalesValue);
+    uiHomePage->SalesDisplay->setText(dashboard->mtdOrdersCost);
     uiHomePage->OverheadCostDisplay->setText(dashboard->overheadCost);
     uiHomePage->OverheadValueDisplay->setText(dashboard->overheadValue);
     uiHomePage->OverheadNetDisplay->setText(dashboard->overheadNet);
@@ -79,4 +80,29 @@ void HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
     uiHomePage->reportTable->resizeColumnsToContents();
 
 
+}
+
+void HomePage::on_removeUser_clicked()
+{
+
+    QString removedUser =  uiHomePage->RemoveUserLineEdit->text();
+    administration removeObj;
+    removeObj.queryAdministration(removedUser);
+
+    uiHomePage->showRemoved->setText("Removed \'" + removedUser +"\'");
+
+}
+
+void HomePage::on_AddUserButton_clicked()
+{
+    QString UID =  uiHomePage->UIDlineEdit->text();
+    QString Fname =  uiHomePage->FNAMElineEdit->text();
+    QString Lname =  uiHomePage->LNAMElineEdit->text();
+    QString DOB =  uiHomePage->DOBlineEdit->text();
+    QString Pass =  uiHomePage->PASSlineEdit->text();
+
+    administration ADDObj;
+    ADDObj.queryAddUser(UID,Fname,Lname,DOB,Pass);
+
+    uiHomePage->Addedlabel->setText("Added \'" + Fname +"\'");
 }
