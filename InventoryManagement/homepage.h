@@ -49,6 +49,8 @@ private slots:
     void on_ReportsDropDown_currentIndexChanged(const QString&);
     void on_removeUser_clicked();
     void on_AddUserButton_clicked();
+    void fadeText(QString str);
+    void on_refreshInv_clicked();
 
 private:
     Ui::HomePage* uiHomePage;

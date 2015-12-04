@@ -6,7 +6,8 @@
 //              management system. The homepage is the navigation for the
 //              application. It allows the user to perform specified operations
 //              such as administration tasks and updating the inventory.
-
+#include <QGraphicsOpacityEffect>
+#include <QPropertyAnimation>
 #include "homepage.h"
 #include "ui_homepage.h"
 #include "reports.h"
@@ -62,12 +63,60 @@ HomePage::~HomePage()
 
 void HomePage::on_addRecord_clicked()
 {
+    QString partNum = uiHomePage->add_partNum->text();
+        QString qty = uiHomePage->add_qty->text();
+        QString partName = uiHomePage->add_partName->text();
 
+        QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+
+        if(!sqlDB->isOpen())
+        {
+            uiHomePage->notifyInventory->setText("[!]Database connection lost");
+            return;
+        }
+
+        QString sqlQuery = "INSERT INTO Parts (Part_num, QTY, Part_name) "
+                           "VALUES (\'"+partNum+"\',\'"+qty+"\',\'"+partName+"\');";
+
+
+        if(sqlDB->query(sqlQuery))
+        {
+            uiHomePage->notifyInventory->setText("added part");
+            fadeText("added part");
+        }
+        else
+        {
+            uiHomePage->notifyInventory->setText("part did not add");
+            fadeText("part did not add");
+        }
+        return;
 }
 
 void HomePage::on_removeRecord_clicked()
 {
+    QString partNum = uiHomePage->del_partNum->text();
 
+        if(!sqlDB->isOpen())
+        {
+            uiHomePage->notifyInventory->setText("[!]Database connection lost");
+            return;
+        }
+
+        QString sqlQuery = "DELETE from Parts where Part_num = \'"+partNum+"\';";
+
+        QString sqlPath = qApp->applicationDirPath() + "/sql/db.sqlite3";
+
+        if(sqlDB->query(sqlQuery))
+        {
+            uiHomePage->notifyInventory->setText("Deleted part");
+            fadeText("Deleted Part");
+        }
+        else
+        {
+            uiHomePage->notifyInventory->setText("part does not exist");
+            fadeText("part does not exist");
+        }
+        return;
 }
 
 void HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
@@ -80,6 +129,28 @@ void HomePage::on_ReportsDropDown_currentIndexChanged(const QString &arg1)
     uiHomePage->reportTable->resizeColumnsToContents();
 
 
+}
+
+void HomePage::fadeText(QString str)
+{
+    QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(uiHomePage->notifyInventory);
+      uiHomePage->notifyInventory->setGraphicsEffect(effect);
+      QPropertyAnimation* animation = new QPropertyAnimation(effect, "opacity");
+      animation->setDuration(2000);
+      animation->setStartValue(1.0);
+      animation->setEndValue(0.0);
+      animation->setEasingCurve(QEasingCurve::OutQuad);
+      //connect(animation,SIGNAL(finished()),this,SLOT();
+      animation->start(QAbstractAnimation::DeleteWhenStopped);
+      uiHomePage->notifyInventory->show();
+}
+
+void HomePage::on_refreshInv_clicked()
+{
+    QSqlQueryModel* table;
+    QString sqlQueryinv = "SELECT * FROM Parts";
+    table = sqlDB->sqlTable(sqlQueryinv);
+    displayInventory(table);
 }
 
 void HomePage::on_removeUser_clicked()

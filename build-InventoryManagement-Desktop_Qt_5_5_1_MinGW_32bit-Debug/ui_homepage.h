@@ -54,6 +54,16 @@ public:
     QTableView *inventoryTable;
     QPushButton *addRecord;
     QPushButton *removeRecord;
+    QPushButton *refreshInv;
+    QLineEdit *add_partNum;
+    QLineEdit *add_qty;
+    QLineEdit *add_partName;
+    QLineEdit *del_partNum;
+    QLabel *label;
+    QLabel *label_2;
+    QLabel *label_3;
+    QLabel *label_4;
+    QLabel *notifyInventory;
     QWidget *Reports;
     QComboBox *ReportsDropDown;
     QTableView *reportTable;
@@ -161,10 +171,40 @@ public:
         inventoryTable->setGeometry(QRect(0, 0, 901, 371));
         addRecord = new QPushButton(Inventory);
         addRecord->setObjectName(QStringLiteral("addRecord"));
-        addRecord->setGeometry(QRect(10, 390, 75, 23));
+        addRecord->setGeometry(QRect(30, 520, 75, 23));
         removeRecord = new QPushButton(Inventory);
         removeRecord->setObjectName(QStringLiteral("removeRecord"));
-        removeRecord->setGeometry(QRect(100, 390, 75, 23));
+        removeRecord->setGeometry(QRect(420, 440, 75, 23));
+        refreshInv = new QPushButton(Inventory);
+        refreshInv->setObjectName(QStringLiteral("refreshInv"));
+        refreshInv->setGeometry(QRect(130, 520, 75, 23));
+        add_partNum = new QLineEdit(Inventory);
+        add_partNum->setObjectName(QStringLiteral("add_partNum"));
+        add_partNum->setGeometry(QRect(100, 420, 113, 20));
+        add_qty = new QLineEdit(Inventory);
+        add_qty->setObjectName(QStringLiteral("add_qty"));
+        add_qty->setGeometry(QRect(100, 450, 113, 20));
+        add_partName = new QLineEdit(Inventory);
+        add_partName->setObjectName(QStringLiteral("add_partName"));
+        add_partName->setGeometry(QRect(100, 480, 113, 20));
+        del_partNum = new QLineEdit(Inventory);
+        del_partNum->setObjectName(QStringLiteral("del_partNum"));
+        del_partNum->setGeometry(QRect(430, 410, 113, 20));
+        label = new QLabel(Inventory);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(30, 420, 47, 13));
+        label_2 = new QLabel(Inventory);
+        label_2->setObjectName(QStringLiteral("label_2"));
+        label_2->setGeometry(QRect(30, 450, 47, 13));
+        label_3 = new QLabel(Inventory);
+        label_3->setObjectName(QStringLiteral("label_3"));
+        label_3->setGeometry(QRect(30, 480, 47, 13));
+        label_4 = new QLabel(Inventory);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        label_4->setGeometry(QRect(360, 410, 47, 13));
+        notifyInventory = new QLabel(Inventory);
+        notifyInventory->setObjectName(QStringLiteral("notifyInventory"));
+        notifyInventory->setGeometry(QRect(90, 390, 361, 16));
         tabWidget->addTab(Inventory, QString());
         Reports = new QWidget();
         Reports->setObjectName(QStringLiteral("Reports"));
@@ -245,7 +285,7 @@ public:
 
         retranslateUi(HomePage);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(HomePage);
@@ -274,6 +314,12 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(Dashboard), QApplication::translate("HomePage", "Dashboard", 0));
         addRecord->setText(QApplication::translate("HomePage", "Add Item", 0));
         removeRecord->setText(QApplication::translate("HomePage", "Remove Item", 0));
+        refreshInv->setText(QApplication::translate("HomePage", "Refresh", 0));
+        label->setText(QApplication::translate("HomePage", "Part Num", 0));
+        label_2->setText(QApplication::translate("HomePage", "qty", 0));
+        label_3->setText(QApplication::translate("HomePage", "Part Name", 0));
+        label_4->setText(QApplication::translate("HomePage", "Part Num", 0));
+        notifyInventory->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(Inventory), QApplication::translate("HomePage", "Inventory", 0));
         ReportsDropDown->clear();
         ReportsDropDown->insertItems(0, QStringList()

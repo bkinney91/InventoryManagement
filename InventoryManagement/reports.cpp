@@ -35,7 +35,11 @@ QSqlQueryModel* Reports::queryReports(QString reportType)
      table1 = sqlDB->sqlTable(sqlQuery);
      return table1;
     }
+    if(reportType == "Select a Report")
+    {
 
+        return 0;
+    }
 
 
     return table1;
